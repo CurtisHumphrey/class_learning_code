@@ -1,4 +1,4 @@
-mobile_apps_template
-====================
+class_learning_code
+===================
 
-Phonegap, jQuery Mobile, Knockout, and Knockout External Templates
+Base Code for Learning Mobile Dev for Curtis' Class
