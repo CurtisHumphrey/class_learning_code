@@ -11,6 +11,8 @@
   Main_Controller_VM = (function() {
 
     function Main_Controller_VM(inits) {
+      this.Refresh_JQM = __bind(this.Refresh_JQM, this);
+
       this.Tap_Settings = __bind(this.Tap_Settings, this);
 
       this.Tap_Home = __bind(this.Tap_Home, this);
@@ -20,7 +22,19 @@
       this.display_page = function() {
         return _this.template_name();
       };
-      this.title = ko.observable("Home");
+      this.title = ko.observable("Home Testing");
+      this.player_name = ko.observable("");
+      this.need_help = ko.observable(false);
+      this.first_player = ko.observable("");
+      this.difficulty_level = ko.observable("Easy");
+      this.difficulty_options = ko.observableArray(['Easy', 'Semi-Easy', 'Medium', 'Hard', 'Crazy']);
+      this.settings = ko.computed(function() {
+        if (!_this.player_name()) {
+          return "Need to pick a name";
+        } else {
+          return "" + (_this.player_name()) + "\nis going " + (_this.first_player() === 'me' ? 'first' : 'second') + ",\n" + (_this.need_help() ? 'wants' : 'does not want') + " help,\nand is playing at " + (_this.difficulty_level()) + " difficulty.";
+        }
+      });
     }
 
     Main_Controller_VM.prototype.Tap_Home = function(d, e) {

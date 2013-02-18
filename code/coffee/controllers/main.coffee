@@ -8,7 +8,25 @@ class Main_Controller_VM
     @display_page = => 
       return @template_name()
     
-    @title = ko.observable "Home"  
+    @title = ko.observable "Home Testing"
+    
+    @player_name = ko.observable ""
+    @need_help = ko.observable false
+    @first_player = ko.observable ""
+    
+    @difficulty_level = ko.observable "Easy"
+    @difficulty_options = ko.observableArray ['Easy', 'Semi-Easy', 'Medium', 'Hard', 'Crazy']
+    
+    @settings = ko.computed =>
+      unless @player_name()
+        "Need to pick a name"
+      else
+        """
+        #{@player_name()}
+        is going #{if @first_player() is 'me' then 'first' else 'second'},
+        #{if @need_help() then 'wants' else 'does not want'} help,
+        and is playing at #{@difficulty_level()} difficulty.
+        """
  
  
   ##Event Bindings
@@ -17,7 +35,7 @@ class Main_Controller_VM
   Tap_Settings: (d, e) =>
     @template_name Templates.SETTINGS
   ##Other Bindings
-  Refresh_JQM: (d) ->
+  Refresh_JQM: (d) =>
     $(d).trigger("create")
     #v = $(d).find("ul")
     #v.listview 'refresh'
