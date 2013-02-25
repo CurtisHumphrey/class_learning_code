@@ -1,0 +1,25 @@
+#board
+{
+  @side: 40px;
+  @count: 3;
+  
+  width: @count * @side;
+  height: @count * @side;
+  
+  @square_color: rgb(0,200,0);
+  .square
+  {
+    width:@side;
+    height:@side;
+    background-color: @square_color;
+    float:left;
+    outline: 1px solid black;
+    text-align:center;
+    line-height: @side;
+    
+    &:nth-child(odd)
+    {
+      background-color: desaturate(@square_color, 40%);
+    }
+  }
+}

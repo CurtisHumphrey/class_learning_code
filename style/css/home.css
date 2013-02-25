@@ -1,0 +1,16 @@
+#board {
+  width: 120px;
+  height: 120px;
+}
+#board .square {
+  width: 40px;
+  height: 40px;
+  background-color: #00c800;
+  float: left;
+  outline: 1px solid black;
+  text-align: center;
+  line-height: 40px;
+}
+#board .square:nth-child(odd) {
+  background-color: #28a028;
+}
