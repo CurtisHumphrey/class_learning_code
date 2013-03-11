@@ -39,8 +39,7 @@
       this._Create_Board = __bind(this._Create_Board, this);
 
       var _this = this;
-      this.board_squares = ko.observableArray([]);
-      this.template_name = ko.observable(Templates.SETTINGS);
+      this.template_name = ko.observable(Templates.HOME);
       this.display_page = function() {
         return _this.template_name();
       };
@@ -57,7 +56,6 @@
           return "" + (_this.player_name()) + "\nis going " + (_this.first_player() === 'me' ? 'first' : 'second') + ",\n" + (_this.need_help() ? 'wants' : 'does not want') + " help,\nand is playing at " + (_this.difficulty_level()) + " difficulty.";
         }
       });
-      this._Create_Board();
     }
 
     Main_Controller_VM.prototype._Create_Board = function() {

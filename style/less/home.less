@@ -1,25 +1,29 @@
-#board
+@image_base: "../../images";
+
+#machines
 {
-  @side: 40px;
-  @count: 3;
+  @machine_size: 128px;
   
-  width: @count * @side;
-  height: @count * @side;
-  
-  @square_color: rgb(0,200,0);
-  .square
+  .machine
   {
-    width:@side;
-    height:@side;
-    background-color: @square_color;
-    float:left;
-    outline: 1px solid black;
-    text-align:center;
-    line-height: @side;
+    width: @machine_size;
+    height: @machine_size;
+    background-size: @machine_size @machine_size;
+    background-repeat:no-repeat;
+    display: inline-block;
+    margin: 40px;
+  }
+  .washer, .dryer
+  {
+    text-align: center;
     
-    &:nth-child(odd)
-    {
-      background-color: desaturate(@square_color, 40%);
-    }
+  }
+  .washer .machine 
+  {
+    background-image: url("@{image_base}/washer_empty.png");
+  }
+  .dryer .machine 
+  {
+    background-image: url("@{image_base}/dryer.png");
   }
 }

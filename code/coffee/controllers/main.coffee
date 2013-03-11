@@ -15,9 +15,7 @@ class Square_VM
 
 class Main_Controller_VM
   constructor: (inits) ->
-    @board_squares = ko.observableArray []
-    
-    @template_name = ko.observable Templates.SETTINGS
+    @template_name = ko.observable Templates.HOME
     @display_page = => 
       return @template_name()
     
@@ -41,7 +39,7 @@ class Main_Controller_VM
         and is playing at #{@difficulty_level()} difficulty.
         """
     
-    @_Create_Board()
+    #@_Create_Board()
     
   ## Helper Functions
   _Create_Board: =>

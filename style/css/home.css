@@ -1,16 +1,18 @@
-#board {
-  width: 120px;
-  height: 120px;
+#machines .machine {
+  width: 128px;
+  height: 128px;
+  background-size: 128px 128px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  margin: 40px;
 }
-#board .square {
-  width: 40px;
-  height: 40px;
-  background-color: #00c800;
-  float: left;
-  outline: 1px solid black;
+#machines .washer,
+#machines .dryer {
   text-align: center;
-  line-height: 40px;
 }
-#board .square:nth-child(odd) {
-  background-color: #28a028;
+#machines .washer .machine {
+  background-image: url("../../images/washer_empty.png");
+}
+#machines .dryer .machine {
+  background-image: url("../../images/dryer.png");
 }
