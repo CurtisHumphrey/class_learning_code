@@ -1,9 +1,9 @@
 <div data-role="content" >
 	<div class="ui-grid-a" id="machines">
 		<div class="ui-block-a washer">
-			<div class="machine"></div>
+			<div class="machine" data-bind="morf: washer_effect"></div>
 			<br/>
-			<button data-inline="true">Animate</button>
+			<button data-inline="true" data-bind="event: {vclick: Tap_Washer}">Animate</button>
 		</div>
 		<div class="ui-block-b dryer">
 			<div class="machine"></div>

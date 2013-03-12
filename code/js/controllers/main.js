@@ -36,6 +36,8 @@
 
       this.Tap_Home = __bind(this.Tap_Home, this);
 
+      this.Tap_Washer = __bind(this.Tap_Washer, this);
+
       this._Create_Board = __bind(this._Create_Board, this);
 
       var _this = this;
@@ -56,6 +58,27 @@
           return "" + (_this.player_name()) + "\nis going " + (_this.first_player() === 'me' ? 'first' : 'second') + ",\n" + (_this.need_help() ? 'wants' : 'does not want') + " help,\nand is playing at " + (_this.difficulty_level()) + " difficulty.";
         }
       });
+      this.washer_on = ko.observable(false);
+      this.washer_rotate_pos = ko.observable(true);
+      this.washer_effect = ko.computed(function() {
+        var animate;
+        if (!_this.washer_on()) {
+          return false;
+        } else {
+          return animate = {
+            css: {
+              '-webkit-transform': _this.washer_rotate_pos() ? 'rotate(5deg)' : 'rotate(-5deg)'
+            },
+            parameters: {
+              duration: '300ms',
+              timingfunction: 'ease-out',
+              callback: function() {
+                return _this.washer_rotate_pos(!_this.washer_rotate_pos());
+              }
+            }
+          };
+        }
+      });
     }
 
     Main_Controller_VM.prototype._Create_Board = function() {
@@ -67,6 +90,10 @@
       underlying_board[1].marker(Square_VM.prototype.HUMAN_MARKER);
       underlying_board[3].marker(Square_VM.prototype.CPU_MARKER);
       return this.board_squares.valueHasMutated();
+    };
+
+    Main_Controller_VM.prototype.Tap_Washer = function(d, e) {
+      return this.washer_on(!this.washer_on());
     };
 
     Main_Controller_VM.prototype.Tap_Home = function(d, e) {

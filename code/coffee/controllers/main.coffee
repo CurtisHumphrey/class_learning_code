@@ -41,6 +41,22 @@ class Main_Controller_VM
     
     #@_Create_Board()
     
+    #Animation KO
+    @washer_on = ko.observable false
+    @washer_rotate_pos = ko.observable true
+    @washer_effect = ko.computed =>
+      unless @washer_on()
+        false
+      else
+        animate =
+          css:
+            '-webkit-transform': if @washer_rotate_pos() then 'rotate(5deg)' else 'rotate(-5deg)'
+          parameters:
+            duration: '300ms'
+            timingfunction: 'ease-out'
+            callback: =>
+              @washer_rotate_pos !@washer_rotate_pos()
+    
   ## Helper Functions
   _Create_Board: =>
     underlying_board = @board_squares()
@@ -50,6 +66,9 @@ class Main_Controller_VM
     @board_squares.valueHasMutated()
    
   ##Event Bindings
+  Tap_Washer: (d, e) =>
+    @washer_on !@washer_on()
+    
   Tap_Home: (d, e) =>
     @template_name Templates.HOME
   Tap_Settings: (d, e) =>
