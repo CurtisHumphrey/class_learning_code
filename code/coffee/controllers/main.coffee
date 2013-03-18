@@ -13,6 +13,28 @@ class Square_VM
   CPU_MARKER: 'O'
   BLANK_MARKER: ''
 
+class Machine_VM
+  constructor: (inits) ->
+    @on = ko.observable false
+    @rotate_pos = ko.observable true
+    @effect = ko.computed =>
+      unless @on()
+        animate =
+          css:
+            '-webkit-transform': 'rotate(0deg)'
+          parameters:
+            duration: '200ms'
+      else
+        animate =
+          css:
+            '-webkit-transform': if @rotate_pos() then 'rotate(5deg)' else 'rotate(-5deg)'
+          parameters:
+            duration: '300ms'
+            timingfunction: 'ease-out'
+            callback: =>
+              @rotate_pos !@rotate_pos()
+  
+
 class Main_Controller_VM
   constructor: (inits) ->
     @template_name = ko.observable Templates.HOME
@@ -42,20 +64,8 @@ class Main_Controller_VM
     #@_Create_Board()
     
     #Animation KO
-    @washer_on = ko.observable false
-    @washer_rotate_pos = ko.observable true
-    @washer_effect = ko.computed =>
-      unless @washer_on()
-        false
-      else
-        animate =
-          css:
-            '-webkit-transform': if @washer_rotate_pos() then 'rotate(5deg)' else 'rotate(-5deg)'
-          parameters:
-            duration: '300ms'
-            timingfunction: 'ease-out'
-            callback: =>
-              @washer_rotate_pos !@washer_rotate_pos()
+    @washer = new Machine_VM()
+    @dryer = new Machine_VM()
     
   ## Helper Functions
   _Create_Board: =>
@@ -67,7 +77,10 @@ class Main_Controller_VM
    
   ##Event Bindings
   Tap_Washer: (d, e) =>
-    @washer_on !@washer_on()
+    @washer.on !@washer.on()
+    
+  Tap_Dryer: (d, e) =>
+    @dryer.on !@dryer.on()
     
   Tap_Home: (d, e) =>
     @template_name Templates.HOME
